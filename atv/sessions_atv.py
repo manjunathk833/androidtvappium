@@ -10,7 +10,7 @@ APPIUM = 'http://localhost:4723'
 
 CAPS = {
     'platformName': 'Android',
-    'deviceName': 'AOSP TV on x86',
+    'deviceName': 'Android TV',
     'automationName': 'UiAutomator2',
     'appPackage': 'com.discovery.dplay.enterprise',
     'appActivity': 'com.discovery.plus.presentation.activities.TVSplashActivity',
@@ -37,26 +37,62 @@ driver = webdriver.Remote(
 # finally:
 #     driver.quit()
 
+# try:
+#     # Create dynamic wait instance
+#     wait = WebDriverWait(driver, 20)
+#
+#     # buttons: "Start X-Day Free Trial" and "Sign In
+#     wait.until(EC.presence_of_element_located((MobileBy.ID, 'com.discovery.dplay.enterprise:id/profilePickerTitle')))
+#     wait.until(EC.presence_of_element_located((MobileBy.XPATH, '/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout/androidx.recyclerview.widget.RecyclerView/android.widget.FrameLayout[1]/android.view.ViewGroup/android.widget.FrameLayout/android.view.ViewGroup/android.widget.ImageView')))
+#     el1 = driver.find_element(MobileBy.XPATH, "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout/androidx.recyclerview.widget.RecyclerView/android.widget.FrameLayout[1]/android.view.ViewGroup/android.widget.FrameLayout/android.view.ViewGroup/android.widget.ImageView")
+#     el1.click()
+#     el1.click()
+#     wait.until(EC.presence_of_element_located((MobileBy.XPATH, '//android.widget.LinearLayout[@content-desc="For You"]/android.widget.TextView')))
+#     driver.find_element(MobileBy.XPATH, '//android.widget.LinearLayout[@content-desc="For You"]/android.widget.TextView')
+#     # time.sleep(3.0)
+#     #down
+#     driver.keyevent(21)
+#     driver.keyevent(21)
+#     driver.keyevent(21)
+#     driver.keyevent(21)
+#     driver.keyevent(19)
+#     driver.back()
+#
+#     #click exit dialog
+#     wait.until(EC.presence_of_element_located((MobileBy.ID, 'com.discovery.dplay.enterprise:id/buttonPositive')))
+#     exit = driver.find_element(MobileBy.ID, 'com.discovery.dplay.enterprise:id/buttonPositive')
+#     exit.click()
+#
+# finally:
+#     driver.quit()
+
 
 try:
     # Create dynamic wait instance
     wait = WebDriverWait(driver, 20)
-    wait.until(EC.presence_of_element_located((MobileBy.XPATH, '/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.widget.Button[2]')))
-    time.sleep(10.0)
-    driver.find_element(MobileBy.XPATH, '/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.widget.Button[2]').click()
-    wait.until(EC.presence_of_element_located((MobileBy.XPATH,'/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.ScrollView/android.view.ViewGroup/android.widget.Button[2]')))
-    driver.find_element(MobileBy.XPATH, '/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.ScrollView/android.view.ViewGroup/android.widget.Button[2]').click()
 
-    # # wait.until(EC.presence_of_element_located((MobileBy.ID, 'com.discovery.dplay.enterprise:id/profilePickerTitle')))
-    # # driver.find_element(MobileBy.XPATH, '/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout/androidx.recyclerview.widget.RecyclerView/android.widget.FrameLayout[4]/android.view.ViewGroup/android.widget.FrameLayout/android.view.ViewGroup/android.widget.ImageView[2]').click()
+    # buttons: "Start X-Day Free Trial" and "Sign In
+    wait.until(EC.presence_of_element_located((MobileBy.ID, 'com.discovery.dplay.enterprise:id/profilePickerTitle')))
+    wait.until(EC.presence_of_element_located((MobileBy.XPATH, '/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout/androidx.recyclerview.widget.RecyclerView/android.widget.FrameLayout[1]/android.view.ViewGroup/android.widget.FrameLayout/android.view.ViewGroup/android.widget.ImageView')))
+    el1 = driver.find_element(MobileBy.XPATH, "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout/androidx.recyclerview.widget.RecyclerView/android.widget.FrameLayout[1]/android.view.ViewGroup/android.widget.FrameLayout/android.view.ViewGroup/android.widget.ImageView")
+    el1.click()
+    el1.click()
+    wait.until(EC.presence_of_element_located((MobileBy.XPATH, '//android.widget.LinearLayout[@content-desc="For You"]/android.widget.TextView')))
+    driver.find_element(MobileBy.XPATH, '//android.widget.LinearLayout[@content-desc="For You"]/android.widget.TextView')
+    # time.sleep(3.0)
+    #down
+    driver.keyevent(21)
+    driver.keyevent(21)
+    driver.keyevent(21)
+    driver.keyevent(21)
+    driver.keyevent(19)
+    driver.back()
 
-    wait.until(EC.presence_of_element_located((MobileBy.ID, '/android.widget.LinearLayout[@content-desc="For You"]/android.widget.TextView')))
-    # driver.back()
-    # driver.back()
-    # wait.until(EC.presence_of_element_located((MobileBy.XPATH, '/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.view.ViewGroup/android.widget.LinearLayout/android.view.ViewGroup[1]')))
-    # driver.back()
-    # wait.until(EC.presence_of_element_located((MobileBy.ID, 'com.discovery.dplay.enterprise:id/buttonPositive')))
-    # driver.find_element(MobileBy.ID, 'com.discovery.dplay.enterprise:id/buttonPositive').click()
+    #click exit dialog
+    wait.until(EC.presence_of_element_located((MobileBy.ID, 'com.discovery.dplay.enterprise:id/buttonPositive')))
+    cancel = driver.find_element(MobileBy.ID, 'com.discovery.dplay.enterprise:id/buttonNegative')
+    cancel.click()
+    wait.until(EC.presence_of_element_located((MobileBy.XPATH, '//android.widget.LinearLayout[@content-desc="For You"]/android.widget.TextView')))
 
 finally:
     driver.quit()
