@@ -5,8 +5,6 @@ from views.home_view import HomeView
 
 # Test Case 1-Test Profile picker screen
 
-# result1 = False
-
 def test_profile_picker(driver):
     profilescreen = ProfilePickerView(driver)
     profile_image_displayed = profilescreen.verify_profile()
@@ -55,5 +53,20 @@ def test_cancel_signout(driver):
         assert False
 
 
-
+# def test_1(driver):
+#     assert True
+#
+# def test_2(driver):
+#     assert False
+#
+#
+# def test_3(driver):
+#     assert True
+#
+#
+# def test_4(driver):
+#     assert False
+#
+# def test_5(driver):
+#     assert False
 

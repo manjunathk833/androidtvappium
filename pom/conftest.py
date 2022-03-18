@@ -2,6 +2,7 @@ import pytest
 from appium import webdriver
 import creds
 import testrail, os
+from datetime import date
 
 """
 TestRail integration
@@ -47,6 +48,60 @@ def update_testrail(case_id, run_id, result_flag, msg=""):
 
     return update_flag
 
+def create_test_run(project_id):
+    update_flag = False
+
+    # Create Name for test run
+    client = get_testrail_client()
+    # str = 'Test Run'
+    # today = date.today()
+    # dt = today.strftime("%B %d, %Y")
+    name = 'NEW TEST RUN'
+
+
+    data = "creating test run"
+    # Update the result in TestRail using send_post function.
+    # Parameters for add_result_for_case is the combination of runid and case id.
+    # status_id is 1 for Passed, 2 For Blocked, 4 for Retest and 5 for Failed
+    # sid = 1
+    # inc= 'true'
+    if project_id is not None:
+        try:
+            result = client.send_post(
+                'add_run/1',
+                {
+                    "suite_id": 1, "name": "This is a new test run", "assignedto_id": 1, "refs": "SAN-1, SAN-2", "include_all": True,
+                })
+        except Exception as e:
+            print('Exception in add_run in TestRail.')
+            print('PYTHON SAYS: ')
+            print(e)
+        else:
+            print('CREATED NEW RUN')
+
+def get_test_run(project_id):
+    update_flag = False
+    # Get the TestRail client account details
+    client = get_testrail_client()
+
+    # Update the result in TestRail using send_post function.
+    # Parameters for add_result_for_case is the combination of runid and case id.
+    # status_id is 1 for Passed, 2 For Blocked, 4 for Retest and 5 for Failed
+    if project_id is not None:
+        try:
+            runs = client.send_get(
+                'get_runs/%s' % (project_id))
+        except Exception as e:
+            print('Exception in get_run in TestRail.')
+            print('PYTHON SAYS: ')
+            print(e)
+        else:
+            print('created new run')
+            print('LATEST RUN ID')
+            rundict = runs['runs'][0]
+    latestrun = rundict['id']
+    print(latestrun)
+    return latestrun
 
 #Update TestRail
 
@@ -101,18 +156,25 @@ def pytest_sessionfinish(session, exitstatus):
     passed_amount = sum(1 for result in session.results.values() if result.passed)
     failed_amount = sum(1 for result in session.results.values() if result.failed)
     print(f'there are {passed_amount} passed and {failed_amount} failed tests')
+
+    #create test run
+    project_id = 1
+    suite_id = 1
+    create_test_run(project_id)
+    #get latest test run id
+    latest_run_id = get_test_run(project_id)
     count = 1
-    test_run_id = 5
+    # test_run_id = 7
     for i in session.results.values():
         if i.passed:
             result = True
             msg = "updating for Pass"
             case_id = count
             count = count+1
-            update_testrail(case_id, test_run_id, result, msg=msg)
+            update_testrail(case_id, latest_run_id, result, msg=msg)
         elif i.failed:
             result = False
             msg = "updating for Fail"
             case_id = count
             count = count + 1
-            update_testrail(case_id, test_run_id, result, msg=msg)
+            update_testrail(case_id, latest_run_id, result, msg=msg)
